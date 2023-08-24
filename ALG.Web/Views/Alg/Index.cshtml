@@ -1,0 +1,64 @@
+@model AlgViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Algorithms</h1>
+    <p>Currently available algorithms</p>
+    
+</div>
+
+<hr class="solid-dark">
+
+
+<div class="alert alert-dark text-center mx-auto w-50" style="background-color: #e8cbfc; color: #34006b">
+  <i class="bi bi-emoji-dizzy"></i> New to encyrption and algorithims and need a guide? <a class="btn btn-dark btn-sm" asp-action="Guide" role="button">Yes!</a>
+</div>
+
+
+
+
+<!-- algo cards-->
+
+<div class="row row-cols-1 row-cols-md-5 g-5">
+  @foreach(var a in Model.Algorithms)
+  {
+    <div class ="col">
+      <div class="card">
+        @if (a.TypeClass == "Cipher")
+        {
+          <div class="card-header bg-danger text-white">
+          <i class="bi bi-chat-square-dots"></i> 
+          @a.TypeClass
+          </div>
+        }
+        else if (a.TypeClass == "Symmetrical")
+        {
+          <div class="card-header bg-info text-white">
+          <i class="bi bi-signpost"></i>
+          @a.TypeClass
+          </div>
+        }
+        else 
+        {
+          <div class="card-header bg-warning text-white">
+          @a.TypeClass
+          </div>
+        }
+        <div class="card-body bg-light"> 
+          <a class = "link-dark text-decoration-none" asp-action="Details" asp-route-id=@a.Id>
+            <h5 class="card-title">@a.Name</h5>
+          </a>
+          <small class="text-muted">@a.Security | @a.Speed</small>
+          <p class="card-text">@a.Efficiency</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">@a.TypeClass</small>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="text-center">
+<img src="https://media.tenor.com/SDwGg31pp4AAAAAC/maxwell-the-cat-maxwell.gif" class="img" width="120">
+</div>
+

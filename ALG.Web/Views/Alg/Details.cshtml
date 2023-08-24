@@ -1,0 +1,79 @@
+@model Algorithm
+
+
+
+<partial name="_Breadcrumbs" model=@(new [] {
+    ("/", "Home"),
+    ("/Alg", "Algorithims"),
+    ("", $"{Model.Name}")
+})/>
+
+<h1 class="display-4">@Model.Name</h1>
+<hr class="solid">
+
+<div class="container">
+    <div class="row">
+        <div class="col" alt="data slot">
+            <div class="row">
+                <div class="col-4">
+                    <div id="data-info" class="list-group">
+                        <a class="list-group-item list-group-item-action" href="#about">
+                            <i class="bi bi-question-lg"></i> About
+                        </a>
+                        <a class="list-group-item list-group-item-action" href="#theory">
+                            <i class="bi bi-puzzle"></i> How it Works
+                        </a>
+                        <a class="list-group-item list-group-item-action" href="#stats">
+                            <i class="bi bi-bar-chart"></i> Statistics
+                        </a>
+                        <a class="list-group-item list-group-item-action" href="#usage">
+                            <i class="bi bi-shield-lock"></i> Use Cases
+                        </a>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div data-bs-spy="scroll" data-bs-target="#data-info" data-bs-smooth-scroll="true" class="scrollspy" tabindex="0">
+                        <h5 id="about">About</h5>
+                        @if (@Model.TypeClass == "Cipher"){
+                            <p>This algorithim is a <a href="/Alg/Guide#ciphers" class="link-dark link-offset-2" style="text-decoration: none"><span style="color: #dc3545;">cipher</span></a> algorithim type</p>
+                            <li>Which come in many forms like:
+                                <ul>
+                                    <li><i class="bi bi-arrow-repeat"></i> Rotation</li>
+                                    <li><i class="bi bi-eraser"></i> Subsitition</li>
+                                    <li><i class="bi bi-files"></i> Polyalphabetic</li>
+                                </ul>
+                            </li>
+                        }
+                        else if(@Model.TypeClass == "Symetrical"){
+                            <p>This algorithim is a <span style="color: #0dcaf0;">symmetrical</span> algorithim type</p>
+                        }
+                        else {
+                            <p>This algorithim is a <span style="color: #ffc107;">asymmetrical</span> algorithim type</p>
+                        }
+                        
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.</p>
+                        <h5 id="theory">How it Works</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        @if (Model.DiagramUrl?.Length > 0){
+                            <img src="@Model.DiagramUrl" class="img-fluid rounded" height="500px" alt="diagram">
+                        } else {
+                            <span class="text-info">n/a</span>
+                        }
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <h5 id="stats">Statistcs</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <h5 id="usage">Use cases</h5>
+                        <p>...</p>
+                        <p><a href="#about" class="link-dark link-offset-2" style="text-decoration: none"> <i class="bi bi-arrow-90deg-up"></i> Back to top</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col" alt="partial slot">
+        bruh
+        
+        </div>
+    </div>
+</div>
+
