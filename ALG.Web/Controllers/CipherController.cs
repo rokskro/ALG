@@ -14,6 +14,27 @@ public class CipherController : BaseController
     }//view only for symmetrical algs
     
     //----------- AES View --------------------
+
+    public ActionResult AESDecrypt(CipherViewModel model)
+    {
+        if (ModelState.IsValid){
+            byte[] inputBytes = Encoding.UTF8.GetBytes(model.InputText);
+            byte[] keyBytes = Encoding.UTF8.GetBytes(model.EncryptionKey);
+
+            using (Aes aesAlg = Aes.Create()){
+                //identifying keys
+                aesAlg.Key = keyBytes;
+                aesAlg.IV = aesAlg.Key;
+                using (ICryptoTransform  decryptor = aesAlg.CreateDecryptor()){
+                    byte[] encryptedBytes = Convert.FromBase64String(model.InputText);
+                    byte[] decryptedBytes = decryptor.TransformFinalBlock(inputBytes, 0, inputBytes.Length);
+                    model.DecryptedText = Encoding.UTF8.GetString(decryptedBytes);
+                }//set decryptor
+                return View("_Sym", model);
+            }//aes create
+        }//model check
+    return View("_Sym", model); 
+    }
     public ActionResult AESEncrypt(CipherViewModel model)
     {
         if (ModelState.IsValid){
@@ -30,16 +51,10 @@ public class CipherController : BaseController
                     model.EncryptedText = Convert.ToBase64String(encryptedBytes);
                 }//set encryptor
                 
-                using (ICryptoTransform  decryptor = aesAlg.CreateDecryptor()){
-                    byte[] encryptedBytes = Convert.FromBase64String(model.EncryptedText);
-                    byte[] decryptedBytes = decryptor.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
-                    string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
-
-                    return View("_Sym", model);
-                }//set decryptor
+                return View("_Sym", model);
             }//AES spawn
-        }//model state checks
-        return View("_Sym", model);
+        }//model state checks  
+    return View("_Sym", model);
     }//AES encrypt and decrypt
 
 

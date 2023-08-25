@@ -6,6 +6,5 @@ public class CipherViewModel
     public string EncryptedText { get; set; }
     public string DecryptedText { get; set; }
 
-    [StringLength(32, MinimumLength = 32)]
     public string EncryptionKey { get; set; }
 }

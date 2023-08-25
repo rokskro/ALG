@@ -11,9 +11,10 @@
     <p>Algorithim type: </p> 
 </div>
 
-
- <h5>A1Z26</h5>
-
+<div class="d-flex justify-content-center">
+<div class="card" style="width: 40rem;">
+    <div class="card-body">
+<h5 class ="card-title"> A1Z26 Cipher</h5>
 @using (Html.BeginForm("A1ZCipher", "Cipher", FormMethod.Post))
 {
     <div class="container">
@@ -21,7 +22,7 @@
             <div class="col">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="title"><i class="bi bi-repeat"> Replace</i></span>
-                    <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i></button>
+                    <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"> Encrypt</i></button>
                 </div>
             </div>
         </div>
@@ -55,11 +56,13 @@
         </div>
     </div>   
 }
+</div>
+</div>
 
 
-
-<h5>Caesar</h5>
-
+<div class="card" style="width: 40rem;">
+    <div class="card-body">
+<h5 class ="card-title"> Caesar Cipher</h5>
 @using (Html.BeginForm("EncryptDecrypt", "Cipher", FormMethod.Post))
 {
     <div class="container">
@@ -68,7 +71,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="key"><i class="bi bi-key"> Key</i></span>
                      @Html.TextBoxFor(model => model.Shift, new { @class = "form-control" })
-                    <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i></button>
+                    <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Encrypt</button>
                 </div>
             </div>
         </div>
@@ -102,5 +105,7 @@
         </div>
     </div>   
 }
+</div>
+</div>
 
-
+</div>
