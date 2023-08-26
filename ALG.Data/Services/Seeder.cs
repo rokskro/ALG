@@ -21,7 +21,7 @@ namespace ALG.Data.Services
                 TypeClass = "Cipher"
             });
             var algo2 = svc.AddAlgorithm(new Algorithm {
-                Name = "Engima", Description = "cipher desc", Security = "bad", SecurityRating = 1,     
+                Name = "A1Z26", Description = "cipher desc", Security = "bad", SecurityRating = 1,     
                 Efficiency = "low", EfficiencyRating = 2, Speed = "average", SpeedRating = 3,   
                 DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
                 TypeClass = "Cipher"
@@ -33,7 +33,7 @@ namespace ALG.Data.Services
                 TypeClass = "Symmetrical"
             });
             var algo4 = svc.AddAlgorithm(new Algorithm {
-                Name = "El Gamal", Description = "algo desc", Security = "Good", SecurityRating = 5,     
+                Name = "RSA", Description = "algo desc", Security = "Good", SecurityRating = 5,     
                 Efficiency = "Good", EfficiencyRating = 4, Speed = "fast", SpeedRating = 5,   
                 DiagramUrl = "https://www.researchgate.net/publication/318463561/figure/fig1/AS:631674199101441@1527614273039/ElGamal-cryptosystem-pseudocode.png",
                 TypeClass = "Asymmetrical"

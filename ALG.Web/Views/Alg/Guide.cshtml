@@ -1,4 +1,4 @@
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 <div class="text-center">
@@ -29,7 +29,7 @@
         <div class="col-8">
             <div data-bs-spy="scroll" data-bs-target="#sections" data-bs-smooth-scroll="true" class="scrollspy" tabindex="0">
                 <h4 id="basics">Basics</h4>
-                    <p>This will be a <a href="#" data-bs-toggle="tooltip" data-bs-title="Default tooltip" style="color: #a324fe;">tooltip</a> test!</p>
+                    <p>This will be a <span class="keyword" data-toggle="tooltip" data-placement="top" title="Tooltip test!" style="color: #a324fe;">tooltip</span> test!</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna et. Bibendum at varius vel pharetra vel turpis nunc. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Faucibus ornare suspendisse sed nisi lacus sed. Ultrices dui sapien eget mi proin. Vel facilisis volutpat est velit egestas dui id ornare arcu. Nunc vel risus commodo viverra maecenas. Aliquam ut porttitor leo a diam sollicitudin..</p>
                 <h4 id="ciphers"><i class="fa-regular fa-font-awesome" style="color: #dc3545;"></i> Ciphers</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna et. Bibendum at varius vel pharetra vel turpis nunc. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Faucibus ornare suspendisse sed nisi lacus sed. Ultrices dui sapien eget mi proin. Vel facilisis volutpat est velit egestas dui id ornare arcu. Nunc vel risus commodo viverra maecenas. Aliquam ut porttitor leo a diam sollicitudin.</p>
@@ -43,3 +43,8 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

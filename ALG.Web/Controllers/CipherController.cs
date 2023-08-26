@@ -15,49 +15,49 @@ public class CipherController : BaseController
     
     //----------- AES View --------------------
 
-    public ActionResult AESDecrypt(CipherViewModel model)
-    {
-        if (ModelState.IsValid){
-            byte[] inputBytes = Encoding.UTF8.GetBytes(model.InputText);
-            byte[] keyBytes = Encoding.UTF8.GetBytes(model.EncryptionKey);
-
-            using (Aes aesAlg = Aes.Create()){
-                //identifying keys
-                aesAlg.Key = keyBytes;
-                aesAlg.IV = aesAlg.Key;
-                using (ICryptoTransform  decryptor = aesAlg.CreateDecryptor()){
-                    byte[] encryptedBytes = Convert.FromBase64String(model.InputText);
-                    byte[] decryptedBytes = decryptor.TransformFinalBlock(inputBytes, 0, inputBytes.Length);
-                    model.DecryptedText = Encoding.UTF8.GetString(decryptedBytes);
-                }//set decryptor
-                return View("_Sym", model);
-            }//aes create
-        }//model check
-    return View("_Sym", model); 
-    }
+    [HttpPost]
     public ActionResult AESEncrypt(CipherViewModel model)
     {
         if (ModelState.IsValid){
-            byte[] inputBytes = Encoding.UTF8.GetBytes(model.InputText);
-            byte[] keyBytes = Encoding.UTF8.GetBytes(model.EncryptionKey);
-
             using (Aes aesAlg = Aes.Create()){
-                //set same key for encryption and decryption
-                aesAlg.Key = keyBytes;
-                aesAlg.IV = aesAlg.Key;
+                aesAlg.Key = Encoding.UTF8.GetBytes(model.EncryptionKey);
+                aesAlg.IV = Encoding.UTF8.GetBytes(model.EncryptionKey);
 
-                using (ICryptoTransform encryptor = aesAlg.CreateEncryptor()){
-                    byte[] encryptedBytes = encryptor.TransformFinalBlock(inputBytes, 0, inputBytes.Length);
-                    model.EncryptedText = Convert.ToBase64String(encryptedBytes);
-                }//set encryptor
-                
-                return View("_Sym", model);
-            }//AES spawn
-        }//model state checks  
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                byte[] plaintextBytes = Encoding.UTF8.GetBytes(model.InputText);
+                byte[] encryptedBytes = encryptor.TransformFinalBlock(plaintextBytes, 0, plaintextBytes.Length);
+
+                string encryptedText = Convert.ToBase64String(encryptedBytes);
+
+                model.EncryptedText = encryptedText;
+            }
+            return View("_Sym", model);
+        }
     return View("_Sym", model);
-    }//AES encrypt and decrypt
+    }
 
+    [HttpPost]
+    public ActionResult AESDecrypt(CipherViewModel model)
+    {
+        if(ModelState.IsValid){
+            using (Aes aesAlg = Aes.Create()){
+                aesAlg.Key = Encoding.UTF8.GetBytes(model.EncryptionKey);
+                aesAlg.IV = Encoding.UTF8.GetBytes(model.EncryptionKey);
 
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                byte[] encryptedBytes = Convert.FromBase64String(model.InputText);
+                byte[] decryptedBytes = decryptor.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
+
+                string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
+
+                model.DecryptedText = decryptedText;
+            }
+            return View("_Sym", model);
+        }
+        return View("_Sym", model);
+    }
 
     //----------- Cipher view --------------------
     public ActionResult _Cipher(){
@@ -145,9 +145,47 @@ public class CipherController : BaseController
         return CEncipher(input, 26 - key);
     }//deciphers caesar
 
-
+    //----------- Asym view --------------------
+     public ActionResult _Asym(){
+        return View(new CipherViewModel());
+    }//view only for asymmetrical algs
     
-        
+    
+    [HttpPost]
+    public ActionResult RSAEncrypt(CipherViewModel model)
+    {
+        if (ModelState.IsValid){
+            using (var rsa = new RSACryptoServiceProvider()){
+                rsa.FromXmlString(model.EncryptionKey);
+
+                byte[] plaintextBytes = Encoding.UTF8.GetBytes(model.InputText);
+                byte[] encryptedBytes = rsa.Encrypt(plaintextBytes, false);
+                string encryptedText = Convert.ToBase64String(encryptedBytes);
+
+                model.EncryptedText = encryptedText;
+            }
+            return View("_Asym", model);
+        }
+        return View("_Asym", model);
+    }//RSA encryption
+
+    [HttpPost]
+    public ActionResult Decrypt(CipherViewModel model)
+    {
+        if(ModelState.IsValid){
+            using (var rsa = new RSACryptoServiceProvider()){
+                rsa.FromXmlString(model.EncryptionKey);
+
+                byte[] encryptedBytes = Convert.FromBase64String(model.InputText);
+                byte[] decryptedBytes = rsa.Decrypt(encryptedBytes, false);
+                string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
+
+                model.DecryptedText = decryptedText;
+            }
+            return View("_Asym", model);
+        }
+       return View("_Asym", model);
+    }
     
         
 }

@@ -1,4 +1,6 @@
 @model Algorithm
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
 
@@ -44,8 +46,8 @@
                                 </ul>
                             </li>
                         }
-                        else if(@Model.TypeClass == "Symetrical"){
-                            <p>This algorithim is a <span style="color: #0dcaf0;">symmetrical</span> algorithim type</p>
+                        else if(@Model.TypeClass == "Symmetrical"){
+                            <p>This algorithim is a <span class="keyword" data-toggle="tooltip" data-placement="top" title="Requires only one key to make and open!" style="color: #0dcaf0;">symmetrical</span> algorithim type</p>
                         }
                         else {
                             <p>This algorithim is a <span style="color: #ffc107;">asymmetrical</span> algorithim type</p>
@@ -76,4 +78,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
