@@ -1,6 +1,13 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Text;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Engines;
+using Org.BouncyCastle.Crypto.Modes;
+using Org.BouncyCastle.Crypto.Paddings;
+using Org.BouncyCastle.Security;
+using Org.BouncyCastle.Crypto.Parameters;
 
 namespace ALG.Web.Controllers;
 public class CipherController : BaseController
@@ -9,6 +16,58 @@ public class CipherController : BaseController
     public ActionResult _Sym(){
         return View(new CipherViewModel());
     }//view only for symmetrical algs
+
+    //----------- Symmetrical (Blowfish) View --------------------
+    public ActionResult _Sym2(){
+        return View(new CipherViewModel());
+    }//view for blowfish
+
+    [HttpPost]
+    public ActionResult BlowFishEncrypt(CipherViewModel model)
+    {
+        if(ModelState.IsValid){
+            byte[] keyBytes = Encoding.UTF8.GetBytes(model.EncryptionKey);
+            byte[] inputBytes = Encoding.UTF8.GetBytes(model.InputText);
+
+            BlowfishEngine fish = new BlowfishEngine();
+            BufferedBlockCipher cipher = new PaddedBufferedBlockCipher(new CbcBlockCipher(fish), new Pkcs7Padding());
+            KeyParameter keyParam = new KeyParameter(keyBytes);
+
+            cipher.Init(true, keyParam);
+            byte[] outputBytes = new byte[cipher.GetOutputSize(inputBytes.Length)];
+            int length = cipher.ProcessBytes(inputBytes, 0, inputBytes.Length, outputBytes, 0);
+            cipher.DoFinal(outputBytes, length);
+
+            string encryptedText = Convert.ToBase64String(outputBytes);
+            model.EncryptedText = encryptedText;
+            return View("_Sym2", model);
+        }
+        return View("_Sym2", model);
+    }
+
+    public ActionResult BlowFishDecrypt(CipherViewModel model)
+    {
+        if (ModelState.IsValid){
+            byte[] keyBytes = Encoding.UTF8.GetBytes(model.EncryptionKey);
+            byte[] encryptedBytes = Convert.FromBase64String(model.InputText);
+
+            BlowfishEngine fish = new BlowfishEngine();
+            BufferedBlockCipher cipher = new PaddedBufferedBlockCipher(new CbcBlockCipher(fish), new Pkcs7Padding());
+            KeyParameter keyParam = new KeyParameter(keyBytes);
+
+            cipher.Init(false, keyParam);
+            byte[] outputBytes = new byte[cipher.GetOutputSize(encryptedBytes.Length)];
+            int length = cipher.ProcessBytes(encryptedBytes, 0, encryptedBytes.Length, outputBytes, 0);
+            cipher.DoFinal(outputBytes, length);
+
+            string decryptedText = Encoding.UTF8.GetString(outputBytes).TrimEnd('\0');
+            model.DecryptedText = decryptedText;
+            return View("_Sym2", model);
+        }
+        return View("_Sym2", model);
+    }
+
+
     
     //----------- AES View --------------------
 
