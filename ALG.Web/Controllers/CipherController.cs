@@ -150,41 +150,40 @@ public class CipherController : BaseController
         return View(new CipherViewModel());
     }//view only for asymmetrical algs
     
-    
-    [HttpPost]
-    public ActionResult RSAEncrypt(CipherViewModel model)
-    {
-        if (ModelState.IsValid){
-            using (var rsa = new RSACryptoServiceProvider()){
-                rsa.FromXmlString(model.EncryptionKey);
 
-                byte[] plaintextBytes = Encoding.UTF8.GetBytes(model.InputText);
-                byte[] encryptedBytes = rsa.Encrypt(plaintextBytes, false);
-                string encryptedText = Convert.ToBase64String(encryptedBytes);
+    [HttpPost]
+    public ActionResult RSAE(CipherViewModel model){
+        if (ModelState.IsValid){
+            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider()){
+                string publicKey = rsa.ToXmlString(false);
+
+                byte[] dataToEncrypt = Encoding.UTF8.GetBytes(model.InputText);
+                byte[] encryptedDataByte = rsa.Encrypt(dataToEncrypt, false);
+                string encryptedText = Convert.ToBase64String(encryptedDataByte);
 
                 model.EncryptedText = encryptedText;
+                model.EncryptionKey = publicKey;
             }
             return View("_Asym", model);
         }
-        return View("_Asym", model);
-    }//RSA encryption
-
+    return View("_Asym", model);
+    }
+    
     [HttpPost]
-    public ActionResult Decrypt(CipherViewModel model)
-    {
+    public ActionResult RSAD(CipherViewModel model){
         if(ModelState.IsValid){
-            using (var rsa = new RSACryptoServiceProvider()){
+            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider()){
                 rsa.FromXmlString(model.EncryptionKey);
 
-                byte[] encryptedBytes = Convert.FromBase64String(model.InputText);
-                byte[] decryptedBytes = rsa.Decrypt(encryptedBytes, false);
-                string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
+                byte[] encryptedData = Convert.FromBase64String(model.InputText);
+                byte[] decryptedData = rsa.Decrypt(encryptedData, false);
+                string decryptedText = Encoding.UTF8.GetString(decryptedData);
 
                 model.DecryptedText = decryptedText;
             }
             return View("_Asym", model);
         }
-       return View("_Asym", model);
+        return View("_Asym", model);
     }
     
         

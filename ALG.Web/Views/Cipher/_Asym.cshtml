@@ -20,19 +20,18 @@
             </div>
 
 <div id="form1">
-<div class="d-flex justify-content-center">
+<div class="justify-content-center">
     
         <div class="card-body">   
-            @using (Html.BeginForm("AESEncrypt", "Cipher", FormMethod.Post))
+            @using (Html.BeginForm("RSAE", "Cipher", FormMethod.Post))
             {
             <div class="container">
                 <p><span style ="color: #802ce1"><i class="bi bi-2-square"></i> Step 2 </span> Try it out!</p>
                 
                 <div class="row">
                     <div class="col">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="key"><i class="bi bi-key"> 16 Digit Key</i></span>
-                            @Html.TextBoxFor(model => model.EncryptionKey, new { @class = "form-control" })
+                        <div class="input-group mb-3 justify-content-center">
+                            <span class="input-group-text" id="key"><i class="bi bi-key"> Encryption Key will generate automatically!</i></span>
                             <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Encrypt</button>
                         </div>
                     </div>
@@ -50,7 +49,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col p-3">
                         <div class="card">
                             <div class="card-header bg-dark" style="color: #ffffff">
                                 Encrypted Text
@@ -58,11 +57,27 @@
                             <div class="card-body">
                                 @if (!string.IsNullOrEmpty(Model.EncryptedText))
                                 {
-                                    <h6>Encrypted Text: @Model.EncryptedText</h6>
+                                    <p> @Model.EncryptedText</p>
                                 }
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <p><span style ="color: #802ce1"><i class="bi bi-3-square"></i> Step 3 </span> Save Decryption Key</p>
+                        <p><span style="color: #d5a505"><i class="bi bi-exclamation-square"></i> Warning: </span> When saving this key, it's important to ignore the <span class="keyword" data-toggle="tooltip" data-placement="top" title="Anything like: <RSAKeyValue><Modulus>" style="color: #d5a505;">wrapping</span> around it, and only copy the long random character assortment</p>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header bg-dark" style="background-color: #802ce1; color: #ffffff">
+                                <i class="bi bi-key"></i>
+                                Decryption key
+                            </div>
+                            <div class="card-body">
+                             @Model.EncryptionKey
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
                 </div>
             </div>   
             }
@@ -71,17 +86,17 @@
 </div>
 
 <div id="form2" style="display: none;">
-<div class="d-flex justify-content-center">
+<div class="justify-content-center">
 
         <div class="card-body">   
-            @using (Html.BeginForm("AESDecrypt", "Cipher", FormMethod.Post))
+            @using (Html.BeginForm("RSAD", "Cipher", FormMethod.Post))
             {
             <div class="container">
                 <p><span style ="color: #802ce1"><i class="bi bi-2-square"></i> Step 2 </span> Try it out!</p>
                 <div class="row">
                     <div class="col">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="key"><i class="bi bi-key"> 16 Digit Key</i></span>
+                            <span class="input-group-text" id="key"><i class="bi bi-key"> Private Key</i></span>
                             @Html.TextBoxFor(model => model.EncryptionKey, new { @class = "form-control" })
                             <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Decrypt</button>
                         </div>
@@ -136,5 +151,10 @@
             // Show the selected form
             $('#' + selectedForm).show();
         });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
