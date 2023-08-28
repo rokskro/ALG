@@ -1,7 +1,4 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
-using ALG.Web.Models;
-using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text;
 
