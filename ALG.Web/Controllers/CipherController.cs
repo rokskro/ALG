@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using ALG.Data.Services;
 using System.Security.Cryptography;
 using System.Text;
 using Org.BouncyCastle.Crypto;
@@ -8,10 +9,46 @@ using Org.BouncyCastle.Crypto.Modes;
 using Org.BouncyCastle.Crypto.Paddings;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.Crypto.Parameters;
+using Microsoft.AspNetCore.Authorization;
+using ALG.Data.Entities;
+using ALG.Web.Models;
+
 
 namespace ALG.Web.Controllers;
 public class CipherController : BaseController
 {
+
+    //----------- Database functionality  --------------------
+    private IAlgorithmService svc;
+    public CipherController()
+    {
+        svc = new AlgorithmService();
+    }//controller
+
+    public IActionResult Index(CipherViewModel search)
+    {
+        search.Algorithms = svc.SearchAlgorithms(search.Query);
+        return View(search);
+    }//get algorithims
+
+    public IActionResult Details(int id)
+    {
+        var algorithim = svc.GetAlgorithm(id);
+       
+        if (algorithim is null) {
+            Alert("algorithim not found", AlertType.warning);
+            return RedirectToAction(nameof(Index));
+        }
+        return View(algorithim);
+    }//algo detail page
+
+    public IActionResult Guide()
+    {
+        return View();
+    }//guide page 
+
+
+
     //----------- Symmetrical View --------------------
     public ActionResult _Sym(){
         return View(new CipherViewModel());
