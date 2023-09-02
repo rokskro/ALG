@@ -1,19 +1,63 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @model CipherViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Algorithms</h1>
-    <p>Currently available algorithms</p>
-    
+<div class="bubble left"><strong>New in v1.0: </strong>Blowfish Algorithm </div>
+<div class="container ">
+  <div class="row">
+    <div class="col-6">
+      <h1 class="display-4"><strong>Algorithm <span class="gradient-text">selection</span></strong></h1>
+      <p>Free selection of algorithim types organised by typing and difficulty, ranging from old-school ciphers to modern algorithims currently used by the security industry - made simple</p>
+      <!-- new alert-->
+      <div class="alert alert-purple w-35">
+        <i class="bi bi-emoji-dizzy"></i> New to encyrption and algorithims and need a guide? <a class="btn btn-dark btn-sm" asp-action="Guide" role="button">Yes!</a>
+      </div>
+    </div>
+    <div class="col-6">
+      <img src="https://i.imgur.com/qN7Ov0n.png" height="310px">
+    </div>
+  </div>
 </div>
+
 
 <hr class="solid-dark">
 
 
-<div class="alert alert-dark text-center mx-auto w-50" style="background-color: #e8cbfc; color: #34006b">
-  <i class="bi bi-emoji-dizzy"></i> New to encyrption and algorithims and need a guide? <a class="btn btn-dark btn-sm" asp-action="Guide" role="button">Yes!</a>
+
+<!-- legend-->
+<div class="box">
+  <div class="row">
+    <div class="col-md-auto">
+      <p>Algorithm<span class="keyword" data-toggle="tooltip" data-placement="top" title="Algorithims are typed based on how their logic works" style="color: #a324fe;"> types</span>:</p>
+    </div>
+    <div class="col-md-auto">
+      <span style="color: #dc3545">
+      <i class="bi bi-square-fill"></i></span>
+      Cipher 
+    </div>
+    <div class="col-md-auto">
+      <span style="color: #0dcaf0">
+      <i class="bi bi-square-fill"></i></span>
+      Symmterical
+    </div>  
+    <div class="col-md-auto">
+      <span style="color: #ffc107">
+      <i class="bi bi-square-fill"></i></span>
+      Asymmetrical
+    </div>
+    <div class="col">
+      <form action="">
+          <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+            <div class="input-group">
+              <input type="search" placeholder="Search for a algorithim" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+              <div class="input-group-append">
+                <button id="button-addon1" type="submit" class="btn btn-link" style="color: #7f4ccd"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
 </div>
-
-
 
 
 <!-- algo cards-->
@@ -47,8 +91,7 @@
           <a class = "link-dark text-decoration-none" asp-action="Details" asp-route-id=@a.Id>
             <h5 class="card-title">@a.Name</h5>
           </a>
-          <small class="text-muted">@a.Security | @a.Speed</small>
-          <p class="card-text">@a.Efficiency</p>
+          <p class="card-text">@a.Description</p>
         </div>
         <div class="card-footer">
           <small class="text-muted">@a.TypeClass</small>
@@ -58,7 +101,10 @@
   }
 </div>
 
-<div class="text-center">
-<img src="https://media.tenor.com/SDwGg31pp4AAAAAC/maxwell-the-cat-maxwell.gif" class="img" width="120">
-</div>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
