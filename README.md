@@ -12,6 +12,12 @@ Implemenatations thus far:
 - Selecting algorithim from a database
 - Shell pages created for algorithim details
 - Caesar Cipher & A1Z26 cipher implemented
+- Blowfish & AES implemented
+- RSA implemented
+- Front page & alg selection page
+- Custom images and visuals
+- Custom css
+- Form selection & tooltips implemented
 
 
 
