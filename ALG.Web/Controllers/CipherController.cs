@@ -48,7 +48,6 @@ public class CipherController : BaseController
     }//guide page 
 
 
-
     //----------- Symmetrical View --------------------
     public ActionResult _Sym(){
         return View(new CipherViewModel());
@@ -103,8 +102,6 @@ public class CipherController : BaseController
         }
         return View("_Sym2", model);
     }
-
-
     
     //----------- AES View --------------------
 
@@ -146,27 +143,36 @@ public class CipherController : BaseController
                 string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
 
                 model.DecryptedText = decryptedText;
-            }
+            }//aes creation
             return View("_Sym", model);
-        }
+        }//if
         return View("_Sym", model);
-    }
-
-    //----------- Cipher view --------------------
-    public ActionResult _Cipher(){
-        return View(new CipherViewModel());
-    }//view only for ciphers
+    }//decrypt aes post
 
     //----------- A1Z26 --------------------
 
+    public ActionResult _Cipher2(){
+        return View(new CipherViewModel());
+    }//view 
+
     [HttpPost]
-    public ActionResult A1ZCipher(CipherViewModel model)
+    public ActionResult A1ZCipherEncrypt(CipherViewModel model)
     {
         if (!ModelState.IsValid){
             return View("_Cipher", model);
         }//if
         model.EncryptedText = A1ZEncrypt(model.InputText);
-        model.DecryptedText = DecryptA1Z(model.EncryptedText);
+
+        return View("_Cipher", model);
+    }//encrypt + decrypt
+
+    [HttpPost]
+    public ActionResult A1ZCipherDecrypt(CipherViewModel model)
+    {
+        if (!ModelState.IsValid){
+            return View("_Cipher", model);
+        }//if
+        model.DecryptedText = DecryptA1Z(model.InputText);
 
         return View("_Cipher", model);
     }//encrypt + decrypt
@@ -203,81 +209,93 @@ public class CipherController : BaseController
     }//decrypts A1Z
   
     //----------- Caesar --------------------
+     public ActionResult _Cipher(){
+        return View(new CipherViewModel());
+    }//view 
+
     [HttpPost]
-    public ActionResult EncryptDecrypt(CipherViewModel model)
+    public ActionResult Encrypt(CipherViewModel model)
     {
-        if (!ModelState.IsValid){
-            return View("_Cipher", model);
+        if (ModelState.IsValid){
+            model.EncryptedText = EncryptTextCaesar(model.InputText, model.Shift);
         }//if
-        model.EncryptedText = CEncipher(model.InputText, model.Shift);
-        model.DecryptedText = CDecipher(model.EncryptedText, model.Shift);
-
         return View("_Cipher", model);
-    }//encrypt + decrypt
+    }//encrypt post
 
-    private static char Cipher(char ch, int key)
+
+    [HttpPost]
+    public ActionResult DecryptC(CipherViewModel model)
     {
-	    if (!char.IsLetter(ch)){
-		    return ch;
+        if (ModelState.IsValid){
+            model.DecryptedText = DecryptTextCaesar(model.EncryptedText, model.Shift);
         }//if
-	    char offset = char.IsUpper(ch) ? 'A' : 'a';
-	    return (char)((((ch + key) - offset) % 26) + offset);
-    }//provides cipher for caesar
+        return View("_Cipher", model);
+    }//decrypt post
 
-    public static string CEncipher(string input, int key)
+    private string EncryptTextCaesar(string text, int shiftKey)
     {
-        string output = string.Empty;
-        foreach (char ch in input){
-            output += Cipher(ch, key);
-        }//foreach
-        return output;
-    }//enciphers caesar
+        StringBuilder encryptedText = new StringBuilder();
+        foreach (char c in text){
+            if (char.IsLetter(c)){
+                char shiftedChar = (char)(((c - 'A' + shiftKey) % 26) + 'A');
+                encryptedText.Append(shiftedChar);
+            }//if
+            else{
+                encryptedText.Append(c);
+            }//else
+        }//for each
+        return encryptedText.ToString();
+    }//encrypt caesar logic
 
-    public static string CDecipher(string input, int key)
+    private string DecryptTextCaesar(string text, int shiftKey)
     {
-        return CEncipher(input, 26 - key);
-    }//deciphers caesar
+        return EncryptTextCaesar(text, 26 - shiftKey);
+    }//decrypt caesar logic
 
     //----------- Asym view --------------------
      public ActionResult _Asym(){
         return View(new CipherViewModel());
     }//view only for asymmetrical algs
-    
 
     [HttpPost]
-    public ActionResult RSAE(CipherViewModel model){
-        if (ModelState.IsValid){
-            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider()){
-                string publicKey = rsa.ToXmlString(false);
+    public ActionResult RSA(CipherViewModel model)
+    {
+        using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider()){
+            string message = model.InputText;
+            byte[] encryptedMessage = EncryptMessage(message, rsa);
+            string decryptedMessage = DecryptMessage(encryptedMessage, rsa);
 
-                byte[] dataToEncrypt = Encoding.UTF8.GetBytes(model.InputText);
-                byte[] encryptedDataByte = rsa.Encrypt(dataToEncrypt, false);
-                string encryptedText = Convert.ToBase64String(encryptedDataByte);
+            string publicKey = Convert.ToBase64String(rsa.ExportRSAPublicKey());
+            string privateKey = Convert.ToBase64String(rsa.ExportRSAPrivateKey());
 
-                model.EncryptedText = encryptedText;
-                model.EncryptionKey = publicKey;
-            }
-            return View("_Asym", model);
-        }
-    return View("_Asym", model);
-    }
-    
-    [HttpPost]
-    public ActionResult RSAD(CipherViewModel model){
-        if(ModelState.IsValid){
-            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider()){
-                rsa.FromXmlString(model.EncryptionKey);
+            model.SpareEncryptionKey = publicKey;
+            model.EncryptionKey = privateKey;
 
-                byte[] encryptedData = Convert.FromBase64String(model.InputText);
-                byte[] decryptedData = rsa.Decrypt(encryptedData, false);
-                string decryptedText = Encoding.UTF8.GetString(decryptedData);
-
-                model.DecryptedText = decryptedText;
-            }
-            return View("_Asym", model);
+            model.EncryptedText = Convert.ToBase64String(encryptedMessage);
+            model.DecryptedText = decryptedMessage;
         }
         return View("_Asym", model);
     }
+
+    static byte[] EncryptMessage(string message, RSACryptoServiceProvider rsa)
+    {
+        byte[] encodedMessage = Encoding.UTF8.GetBytes(message);
+        byte[] encryptedMessage = rsa.Encrypt(encodedMessage, true);
+
+        return encryptedMessage;
+    }
+
+    static string DecryptMessage(byte[] encryptedMessage, RSACryptoServiceProvider rsa)
+    {
+        byte[] decryptedMessage = rsa.Decrypt(encryptedMessage, true);
+        string originalMessage = Encoding.UTF8.GetString(decryptedMessage);
+
+        return originalMessage;
+    }
+
     
+    
+
+
         
 }

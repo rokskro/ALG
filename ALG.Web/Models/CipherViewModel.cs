@@ -13,4 +13,6 @@ public class CipherViewModel
     public string DecryptedText { get; set; }
 
     public string EncryptionKey { get; set; }
+    public string SpareEncryptionKey { get; set; }
+    public string Error { get; set; }
 }
