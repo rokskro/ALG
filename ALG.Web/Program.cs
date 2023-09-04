@@ -5,13 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Authentication / Authorisation via extension methods 
-builder.Services.AddCookieAuthentication();
-//builder.Services.AddPolicyAuthorisation();
 
-// Add UserService to DI   
-builder.Services.AddTransient<IUserService,UserServiceDb>();
-builder.Services.AddTransient<IMailService,SmtpMailService>();
+
 
 // ** Required to enable asp-authorize Taghelper **            
 builder.Services.AddHttpContextAccessor(); 
@@ -30,9 +25,6 @@ if (!app.Environment.IsDevelopment())
 }
 else 
 {
-    // seed users in development mode - using service provider to get UserService from DI
-    //using var scope = app.Services.CreateScope();
-    //Seeder.Seed(scope.ServiceProvider.GetService<IUserService>());
     Seeder.SeedAlgorithms(new AlgorithmService());
 }
 
