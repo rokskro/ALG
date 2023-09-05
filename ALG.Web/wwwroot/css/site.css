@@ -60,7 +60,22 @@ body.dark{
   place-self: start;
 }
 
-
 .alert-purple { 
   border-color: #7f4ccd; background: #7f4ccd;color: #fff; 
+}
+
+.purpleContent{
+  height:400px;
+  background:#7f4ccd;
+  overflow:hidden;
+  position:relative;
+}
+
+.whiteDiagonal{
+  width: 0;
+  height:0;
+  position:absolute;
+  bottom:0px;
+  border-bottom: 100px solid white;
+  border-left: 100vw solid transparent;
 }
