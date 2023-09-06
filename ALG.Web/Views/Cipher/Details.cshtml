@@ -10,7 +10,8 @@
     ("", $"{Model.Name}")
 })/>
 
-<h1 class="display-4">@Model.Name</h1>
+<h1><span class="gradient-text">@Model.Name</h1>
+<h3></h3>
 <hr class="solid">
 
 <div class="container">
@@ -58,7 +59,9 @@
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.</p>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
                         @if (Model.DiagramUrl?.Length > 0){
-                            <img src="@Model.DiagramUrl" class="img-fluid rounded" height="500px" alt="diagram">
+                            <div class="text-center">
+                                <img src="@Model.DiagramUrl" class="img-fluid rounded " height="200px" alt="diagram">
+                            </div>
                         } else {
                             <span class="text-info">n/a</span>
                         }
@@ -71,9 +74,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col" alt="partial slot">
-        
         </div>
     </div>
 </div>

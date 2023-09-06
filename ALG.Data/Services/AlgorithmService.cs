@@ -60,6 +60,7 @@ public class AlgorithmService : IAlgorithmService
         //creating Algorithm
         var Algorithm = new Algorithm{
             Name = a.Name,
+            LongName = a.LongName,
             Description = a.Description,
             DiagramUrl = a.DiagramUrl,
             Efficiency = a.Efficiency,

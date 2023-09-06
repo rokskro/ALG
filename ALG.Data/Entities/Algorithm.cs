@@ -13,6 +13,8 @@ public class Algorithm
     [Required]
     public string Name {get;set;}
     [Required]
+    public string LongName{get; set;}
+    [Required]
     public string Description {get;set;}
 
     [Required]
