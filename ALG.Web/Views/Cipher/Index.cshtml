@@ -62,39 +62,81 @@
 
 <!-- algo cards-->
 
-<div class="row row-cols-1 row-cols-md-5 g-5">
+
+<div class="row row-cols-1 row-cols-md-5 g-4">
   @foreach(var a in Model.Algorithms)
   {
     <div class ="col">
-      <div class="card">
-        @if (a.TypeClass == "Cipher")
-        {
-          <div class="card-header bg-danger text-white">
-          <i class="bi bi-chat-square-dots"></i> 
-          @a.TypeClass
-          </div>
-        }
-        else if (a.TypeClass == "Symmetrical")
-        {
-          <div class="card-header bg-info text-white">
-          <i class="bi bi-signpost"></i>
-          @a.TypeClass
-          </div>
-        }
-        else 
-        {
-          <div class="card-header bg-warning text-white">
-          @a.TypeClass
-          </div>
-        }
-        <div class="card-body bg-light"> 
+      <div class="card shadow ">
+        
+        <div class="card-body bg-light">
+          @if (a.TypeClass == "Cipher"){
+            <img src="https://i.imgur.com/TcyzHID.png" class="img-fluid rounded ">
+          }
+          else if (a.TypeClass == "Symmetrical"){
+            <img src="https://i.imgur.com/BCZw7r4.png" class="img-fluid rounded ">
+          }
+          else {
+            <img src="https://i.imgur.com/iZtf44C.png" class="img-fluid rounded ">
+          }
           <a class = "link-dark text-decoration-none" asp-action="Details" asp-route-id=@a.Id>
-            <h5 class="card-title">@a.Name</h5>
+            <h5 class="card-title p-1">@a.Name</h5>
           </a>
-          <p class="card-text">@a.Description</p>
+          <p class="ps">@a.Description</p>
+          @switch(a.Name){
+            case "Caesar":
+              <div class="d-grid gap-2 d-md-block">
+                <a class="btn btn-purple" asp-action="_Cipher" role="button">Try it out</a>
+                <a class="btn-grad" asp-action="Details" asp-route-id=@a.Id role="button"><span class="text">Learn</span></a>
+              </div>
+              break;
+            case "A1Z26":
+            <div class="d-grid gap-2 d-md-block">
+              <a class="btn btn-purple" asp-action="_Cipher2" role="button">Try it out</a>
+              <a class="btn-grad" asp-action="Details" asp-route-id=@a.Id role="button"><span class="text">Learn</span></a>
+            </div>  
+              break;
+            case "AES":
+            <div class="d-grid gap-2 d-md-block">
+              <a class="btn btn-purple" asp-action="_Sym" role="button">Try it out</a>
+              <a class="btn-grad" asp-action="Details" asp-route-id=@a.Id role="button"><span class="text">Learn</span></a>
+            </div>
+              break;
+            case "Blowfish":
+            <div class="d-grid gap-2 d-md-block">
+              <a class="btn btn-purple" asp-action="_Sym2" role="button">Try it out</a>
+              <a class="btn-grad" asp-action="Details" asp-route-id=@a.Id role="button"><span class="text">Learn</span></a>
+            </div>
+              break;
+            case "RSA":
+            <div class="d-grid gap-2 d-md-block">
+              <a class="btn btn-purple" asp-action="_Asym" role="button">Try it out</a>
+              <a class="btn-grad" asp-action="Details" asp-route-id=@a.Id role="button"><span class="text">Learn</span></a>
+            </div>
+              break;
+            default:
+              <p>Test unavailable</p>
+              break;
+          }
+          
         </div>
         <div class="card-footer">
-          <small class="text-muted">@a.TypeClass</small>
+          @if (a.TypeClass == "Cipher"){
+            <span style="color: #dc3545">
+            <i class="bi bi-square-fill"></i></span>
+            <small class="text-muted">@a.TypeClass</small>
+          }
+          else if (a.TypeClass == "Symmetrical"){
+            <span style="color: #0dcaf0">
+            <i class="bi bi-square-fill"></i></span>
+            <small class="text-muted">@a.TypeClass</small>
+          }
+          else {
+            <span style="color: #ffc107">
+            <i class="bi bi-square-fill"></i></span>
+            <small class="text-muted">@a.TypeClass</small>
+          }
+          
         </div>
       </div>
     </div>

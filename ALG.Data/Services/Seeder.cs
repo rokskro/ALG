@@ -33,13 +33,13 @@ namespace ALG.Data.Services
                 TypeClass = "Symmetrical"
             });
              var algo4 = svc.AddAlgorithm(new Algorithm {
-                Name = "Blowfish", LongName ="Blowfish Cipher",Description = "Symmetric-key block cipher algorithm known for its flexibility in supporting various key lengths and its resistance to known cryptographic attacks,", Security = "Good", SecurityRating = 5,     
+                Name = "Blowfish", LongName ="Blowfish Cipher",Description = "Flexible symmetric-key block cipher algorithm supporting various key lengths with resistance to cryptographic attacks,", Security = "Good", SecurityRating = 5,     
                 Efficiency = "High", EfficiencyRating = 5, Speed = "fast", SpeedRating = 5,   
                 DiagramUrl = "https://www.simplilearn.com/ice9/free_resources_article_thumb/process.png",
                 TypeClass = "Symmetrical"
             });
             var algo5 = svc.AddAlgorithm(new Algorithm {
-                Name = "RSA",LongName= "Rivest–Shamir–Adleman", Description = "Asymmetric-key encryption algorithm widely used for secure communication based on the mathematical difficulty of factoring large semiprime numbers", Security = "Good", SecurityRating = 5,     
+                Name = "RSA",LongName= "Rivest–Shamir–Adleman", Description = "Widely used asymmetric-key encryption algorithm based on the mathematical difficulty of factoring large semiprime numbers", Security = "Good", SecurityRating = 5,     
                 Efficiency = "Good", EfficiencyRating = 4, Speed = "fast", SpeedRating = 5,   
                 DiagramUrl = "https://www.researchgate.net/publication/318463561/figure/fig1/AS:631674199101441@1527614273039/ElGamal-cryptosystem-pseudocode.png",
                 TypeClass = "Asymmetrical"

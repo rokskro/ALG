@@ -79,3 +79,21 @@ body.dark{
   border-bottom: 100px solid white;
   border-left: 100vw solid transparent;
 }
+
+.ps {
+  font-size: 14px;
+}
+
+.btn-purple {
+  background-color: #7f4ccd; 
+  color: #ffffff;
+}
+
+.btn-grad {
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  background-color: #7f4ccd; 
+  color: #ffffff;
+
+}
+
+
