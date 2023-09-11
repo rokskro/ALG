@@ -90,6 +90,14 @@ body.dark{
   background-color: #7f4ccd; 
   color: #ffffff;
 }
+.btn-darkpurple {
+  background-color: #5B42F3; 
+  color: #ffffff;
+}
+.btn-cyan {
+  background-color: #21cbff; 
+  color: #ffffff;
+}
 
 .btn-grad {
   background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
