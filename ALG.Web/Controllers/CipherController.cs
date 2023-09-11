@@ -47,6 +47,11 @@ public class CipherController : BaseController
         return View();
     }//guide page 
 
+    public IActionResult Match()
+    {
+        return View();
+    }//matchmaking page
+
 
     //----------- Symmetrical View --------------------
     public ActionResult _Sym(){
