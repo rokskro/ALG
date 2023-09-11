@@ -18,25 +18,107 @@
                 <a class="list-group-item list-group-item-action" href="#ciphers">
                     <i class="bi bi-chat-square-dots"></i> Ciphers
                 </a>
-                <a class="list-group-item list-group-item-action" href="#symetrical">
+                <a class="list-group-item list-group-item-action" href="#symmetrical">
                     <i class="bi bi-signpost"></i> Symetrical
                 </a>
-                <a class="list-group-item list-group-item-action" href="#asymetrical">
+                <a class="list-group-item list-group-item-action" href="#asymmetrical">
                     <i class="bi bi-signpost-split"></i> Asymetrical
                 </a>
             </div>
         </div>
         <div class="col-8">
             <div data-bs-spy="scroll" data-bs-target="#sections" data-bs-smooth-scroll="true" class="scrollspy" tabindex="0">
+                <!-- Basics -->
                 <h4 id="basics">Basics</h4>
-                    <p>This will be a <span class="keyword" data-toggle="tooltip" data-placement="top" title="Tooltip test!" style="color: #a324fe;">tooltip</span> test!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna et. Bibendum at varius vel pharetra vel turpis nunc. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Faucibus ornare suspendisse sed nisi lacus sed. Ultrices dui sapien eget mi proin. Vel facilisis volutpat est velit egestas dui id ornare arcu. Nunc vel risus commodo viverra maecenas. Aliquam ut porttitor leo a diam sollicitudin..</p>
+
+                    <p>Cryptography is a foundational concept in the realm of information security. At its core, it involves the practice of transforming <span class="keyword" data-toggle="tooltip" data-placement="top" title="Original Data" style="color: #a324fe;">plaintext</span> into <span class="keyword" data-toggle="tooltip" data-placement="top" title="Encrypted Data" style="color: #a324fe;">ciphertext</span> using various mathematical algorithms and cryptographic keys. </p>
+
+                    <p>The primary objective of cryptography is to ensure that sensitive information remains confidential and secure, even when transmitted or stored in potentially insecure environments. The field of cryptography extends beyond confidentiality to include other critical aspects such as 
+                    <span class="keyword" data-toggle="tooltip" data-placement="top" title="Guarding against improper information modification" style="color: #a324fe;">integrity</span>,
+                    <span class="keyword" data-toggle="tooltip" data-placement="top" title="Validating origins of files trhough proof of identity" style="color: #a324fe;">authenticity</span>, and <span class="keyword" data-toggle="tooltip" data-placement="top" title=" Adhering to an legal obligation " style="color: #a324fe;">non-repudiation</span>.</p>
+
+                    <p>Early <span style="color: #e12f2f">ciphers</span> serve as a crucial part of the cryptographic heritage, providing historical context, foundational principles, and inspiration for innovation in modern cryptography. While modern cryptographic techniques have advanced significantly, the study of early ciphers remains essential to understanding the rich history and ongoing evolution of the field.</p>
+
+                <!-- ciphers -->
                 <h4 id="ciphers"><i class="fa-regular fa-font-awesome" style="color: #dc3545;"></i> Ciphers</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna et. Bibendum at varius vel pharetra vel turpis nunc. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Faucibus ornare suspendisse sed nisi lacus sed. Ultrices dui sapien eget mi proin. Vel facilisis volutpat est velit egestas dui id ornare arcu. Nunc vel risus commodo viverra maecenas. Aliquam ut porttitor leo a diam sollicitudin.</p>
-                <h4 id="symetrical"><i class="fa-regular fa-font-awesome" style="color: #0dcaf0;"></i> Symetrical</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna et. Bibendum at varius vel pharetra vel turpis nunc. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Faucibus ornare suspendisse sed nisi lacus sed. Ultrices dui sapien eget mi proin. Vel facilisis volutpat est velit egestas dui id ornare arcu. Nunc vel risus commodo viverra maecenas. Aliquam ut porttitor leo a diam sollicitudin.</p>
-                <h4 id="asymetrical"><i class="fa-regular fa-font-awesome" style="color: #ffc107;"></i> Asymetrical </h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Malesuada fames ac turpis egestas sed tempus urna et. Bibendum at varius vel pharetra vel turpis nunc. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Faucibus ornare suspendisse sed nisi lacus sed. Ultrices dui sapien eget mi proin. Vel facilisis volutpat est velit egestas dui id ornare arcu. Nunc vel risus commodo viverra maecenas. Aliquam ut porttitor leo a diam sollicitudin.</p>
+
+                    <p>Ciphers, sometimes known as 'old-school ciphers', refer to historical encryption methods used in ancient times or before 'modern' cryptographic techniques. These ciphers often rely on simple and easily understood principles.</p>
+                    <p>Here are some key principles commonly associated:</p>
+
+                    <ul>
+                        <li><span style="color: #e12f2f">Substitution</span>: Wherein each letter or symbol in the plaintext is replaced with another letter or symbol. Notable examples include the <span style="color: #e12f2f">Caesar Cipher</span>.</li>
+                        <li><span style="color: #e12f2f">Transposition</span>: These ciphers involve rearranging the order of characters in the plaintext without changing the characters themselves.</li>
+                        <li><span style="color: #e12f2f">Monoalphabetic</span>: Involves the use of a single substitution rule for each character, making them relatively easy to break through <span class="keyword" data-toggle="tooltip" data-placement="top" title="The study of the frequency of letters or groups of letters in a ciphertext" style="color: #a324fe;">frequency analysis</span>.</li>
+                        <li><span style="color: #e12f2f">Polyalphabetic</span>: The usage ofmultiple substitution rules based on the position of the character in the plaintext or a keyword, adding complexity to the encryption process. The most known of these is the <span style="color: #e12f2f">Vigenère cipher</span>.</li>
+                    </ul>
+
+                    <p>Many old school ciphers rely on the use of secret keys to control the encryption and decryption processes. These keys determine the specific substitution or transposition rules applied during encryption. While old school ciphers lack the security features of modern encryption techniques, they remain essential for understanding the principles upon which modern cryptographic methods are built.</p>
+                    <p>Alogrithms currently available of this type:</p>
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="/Cipher/Details/1" class="btn btn-purple" role="button">Caesar</a>
+                        <a href="/Cipher/Details/2" class="btn btn-purple"  role="button">A1Z26</a>
+                    </div>
+
+                <!-- Sym -->
+                <h4 id="symmetrical"><i class="fa-regular fa-font-awesome" style="color: #0dcaf0;"></i> Symmetrical</h4>
+
+                    <p>Symmetric algorithms are a class of cryptographic algorithms used to encrypt and decrypt data, and they are called "symmetric" because the same key is used for both encryption and decryption.In this type of encryption, the sender and receiver must share a <span class="keyword" data-toggle="tooltip" data-placement="top" title="Series of bits used to encrypt and decrypt information" style="color: #a324fe;">secret key</span>.</p>
+
+                    <p>Symmetric algorithms are known for their speed and efficiency, making them suitable for scenarios where performance is critical. However, <span class="keyword" data-toggle="tooltip" data-placement="top" title="The transport of a key between two indivudals" style="color: #a324fe;"> key distribution </span> can be a challenge, as both parties need to securely exchange and manage the secret key.</p>
+                    <p>Improper management of encryption keys is a common problem, and a poor key management system can have a number of negative effects, including increased likelihood of a <span class="keyword" data-toggle="tooltip" data-placement="top" title="Security incident where unauthorized parties gain access to sensitive data or confidential information" style="color: #a324fe;">data breach</span>.</p>
+
+                    <p>Symmetric algorithms are popular for several reasons, making them a preferred choice for many cryptographic applications:</p>
+                    <ul>
+                        <li>
+                            <span style="color: #0dcaf0"> <i class="bi bi-award"></i>Versatile</span>: Symmetric algorithms are versatile and can be used in various cryptographic applications, including data encryption, file encryption, disk encryption, and more. Their adaptability makes them suitable for a wide range of security requirements and scenarios.
+                        </li>
+                        <li>
+                            <span style="color: #0dcaf0"><i class="bi bi-file-lock"></i>Secure </span>:
+                            Many symmetric algorithms have been rigorously studied and tested over the years, resulting in a strong body of knowledge about their security properties and vulnerabilities. Algorithms like the <span style="color: #0dcaf0">Advanced Encryption Standard (AES) </span> are widely recognized for their resilience against known attacks when used with appropriate key lengths.
+                        </li>
+                    </ul>
+
+
+                    <p>Algorithms currently available of this type:</p>
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="/Cipher/Details/1" class="btn btn-purple" role="button">AES</a>
+                        <a href="/Cipher/Details/2" class="btn btn-purple"  role="button">Blowfish</a>
+                    </div>
+                   
+                <!-- Asym -->
+                <h4 id="asymmetrical"><i class="fa-regular fa-font-awesome" style="color: #ffc107;"></i> Asymmetrical </h4>
+
+                    <p>Asymmetric algorithms, also known as <span class="keyword" data-toggle="tooltip" data-placement="top" title="Method of encrypting or signing data with two different keys and making one of the keys, the public key, available for anyone to use" style="color: #a324fe;">public-key cryptography </span>, are a fundamental class of cryptographic techniques that use two different but <span class="keyword" data-toggle="tooltip" data-placement="top" title="Sharing a mathematical origin" style="color: #a324fe;">mathematically related</span> keys: a public key and a private key. </p>
+                    
+                    <p>These keys are generated as a pair, and each key serves a distinct purpose in the encryption and decryption processes. Asymmetric cryptography addresses key distribution challenges present in symmetric cryptography by allowing users to share their public keys openly while keeping their private keys secret</p>
+                    <p>In asymmetric cryptography:</p>
+                    <ul>
+                        <li>
+                            The <span style="color: #ffc107">Public Key </span>is used for encryption, and anyone can use it to encrypt data intended for the owner.
+                        </li>
+                        <li>
+                            The <span style="color: #ffc107">Private Key </span>is only kept by the owner who can decrypt and access the original data.
+                        </li>
+                    </ul>
+                    <p>This fundamental principle of asymmetric encryption enables secure communication and data exchange without the need for a shared secret key. Asymmetric algorithms play a crucial role in securing modern communications and online transactions.</p>
+
+                    <p>They are however, less commonly used in some specific contexts due to certain characteristics and performance considerations, with following reasons including:</p> 
+                    <ul>
+                        <li>
+                            <span style="color: #ffc107"> <i class="bi bi-calculator-fill"></i>Computational Complexity </span>: These algorithms are
+                            <span class="keyword" data-toggle="tooltip" data-placement="top" title="Requires intensive mathematical calculations to be done by the computer" style="color: #a324fe;
+                            ">computationally intensive</span>. Operations involving large prime numbers and mathematical functions are inherently slower than the simpler bit operations used in symmetric cryptography. This makes asymmetric algorithms less suitable for tasks that require high-speed encryption and decryption.
+                        </li>
+                        <li>
+                            <span style="color: #ffc107"><i class="bi bi-key"></i>Key Size </span>:
+                            Public and private keys in asymmetric cryptography tend to be larger than symmetric keys. This can be a disadvantage in situations where memory and storage are limited like in mobile applications.
+                        </li>
+                    </ul>
+                    
+                    <p>Alogrithms currently available of this type:</p>
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="/Cipher/Details/5" class="btn btn-purple" role="button">RSA</a>
+                    </div>
                 <p><a href="#basics" class="link-dark link-offset-2" style="text-decoration: none"> <i class="bi bi-arrow-90deg-up"></i> Back to top</a></p>
             </div>
         </div>

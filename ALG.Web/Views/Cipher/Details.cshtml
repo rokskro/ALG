@@ -38,20 +38,13 @@
                     <div data-bs-spy="scroll" data-bs-target="#data-info" data-bs-smooth-scroll="true" class="scrollspy" tabindex="0">
                         <h5 id="about">About</h5>
                         @if (@Model.TypeClass == "Cipher"){
-                            <p>This algorithim is a <a href="/Alg/Guide#ciphers" class="link-dark link-offset-2" style="text-decoration: none"><span style="color: #dc3545;">cipher</span></a> algorithim type</p>
-                            <li>Which come in many forms like:
-                                <ul>
-                                    <li><i class="bi bi-arrow-repeat"></i> Rotation</li>
-                                    <li><i class="bi bi-eraser"></i> Subsitition</li>
-                                    <li><i class="bi bi-files"></i> Polyalphabetic</li>
-                                </ul>
-                            </li>
+                            <p>This algorithim is a <a href="/Cipher/Guide#ciphers" class="link-dark link-offset-2" style="text-decoration: none"><span style="color: #dc3545;">cipher</span></a> algorithim type</p>
                         }
                         else if(@Model.TypeClass == "Symmetrical"){
-                            <p>This algorithim is a <span class="keyword" data-toggle="tooltip" data-placement="top" title="Requires only one key to make and open!" style="color: #0dcaf0;">symmetrical</span> algorithim type</p>
+                            <p>This algorithim is a <a href="/Cipher/Guide#symmetrical" class="link-dark link-offset-2" style="text-decoration: none"><span style="color: #0dcaf0;">symmetrical</span> </a>algorithim type</p>
                         }
                         else {
-                            <p>This algorithim is a <span style="color: #ffc107;">asymmetrical</span> algorithim type</p>
+                            <p>This algorithim is a <a href="/Cipher/Guide#asymmetrical" class="link-dark link-offset-2" style="text-decoration: none"> <span style="color: #ffc107;">asymmetrical</span> algorithim type</a></p>
                         }
                         
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.</p>

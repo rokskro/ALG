@@ -61,7 +61,9 @@ body.dark{
 }
 
 .alert-purple { 
-  border-color: #7f4ccd; background: #7f4ccd;color: #fff; 
+  border-color: #7f4ccd; 
+  background: #7f4ccd;
+  color: #fff; 
 }
 
 .purpleContent{
