@@ -12,33 +12,40 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark shadow-lg rounded mb-3" style ="background-color: #6c3eb4">
-        @* <nav class="navbar navbar-expand-md navbar-light bg-white shadow-lg rounded mb-3"> *@
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <!--<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-exclude" viewBox="0 0 16 16">
-                        <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
-                    </svg>
-                    <span>ALG</span>
-                    -->
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-lg rounded mb-3" style ="background-color: #6c3eb4">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                     <img src="https://i.imgur.com/JycWV2A.png" style="height: 38px"></img>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link"  asp-controller="Home" asp-action="Index">Home</a>
-                        <a class="nav-link"  asp-controller="Home" asp-action="Privacy">Privacy</a>      
-                        <a class="nav-link"  asp-controller="Cipher" asp-action="Index">Algorithms</a>
-                        <a class="nav-link"  asp-controller="Cipher" asp-action="Match">Matching</a>
-                        <a class="nav-link"  asp-controller="Cipher" asp-action="Guide">Guide</a>
-                        <a class="nav-link"  asp-controller="Cipher" asp-action="_Cipher">Cipher</a>                        
-                    </div>     
-                </div>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Cipher" asp-action="Guide">Guide</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Algorithms
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-controller="Cipher" asp-action="Index">Selection</a></li>
+                            <li><a class="dropdown-item" asp-controller="Cipher" asp-action="_Cipher">Test Ground</a></li>
+                            <li><a class="dropdown-item" asp-controller="Cipher" asp-action="Match">Matching</a></li>
+                         </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
+
 
     <div class="container">
         

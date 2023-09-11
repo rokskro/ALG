@@ -97,3 +97,58 @@ body.dark{
 }
 
 
+
+.hidden-text {
+  display: none;
+}
+.border-gradient {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+}
+.border-gradient-purple {
+  border-image-source: linear-gradient(to left, #743ad5, #00DDEB);
+}
+
+
+
+
+.container {
+  overflow: hidden;
+}
+
+.filterDiv {
+  float: left;
+  border-radius: 10px;
+  background-color: #743ad5;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  color: #ffffff;
+  width: 80px;
+  line-height: 80px;
+  text-align: center;
+  margin: 2px;
+  display: none; /* Hidden by default */
+}
+
+.show {
+  display: block;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+.a-clear{
+  color: white;
+  text-decoration: none;
+}
+.a-clear:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+

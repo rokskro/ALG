@@ -1,93 +1,36 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<div class ="container mt-5">
-    <!-- Progress Bar -->
-    <div class="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar bg-success" style="width: 0%"></div>
-    </div>
-
-    <!-- Step 1: Interest Selection -->
-    <div class="mt-4">
-         <h3>What suits your needs?</h3>
-         <form id="userPreferencesStep1">
-            <div class="form-group">
-                <label for="interest">Choose just one. This will help us get you started</label>
-                <select class="form-control" id="interest">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                </select>
-            </div>
-            <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
-         </form>
-    </div>
-    <!-- Step 2: More Selection -->
-    <div class="mt-4" style="display: none;" id="step2">
-        <h3>What suits your needs?</h3>
-        <form id="userPreferencesStep2">
-            <div class="form-group">
-                <label for="need">Choose just one. This will help us get you started</label>
-                <select class="form-control" id="need">
-                    <option value="option4">Option 4</option>
-                    <option value="option5">Option 5</option>
-                    <option value="option6">Option 6</option>
-                </select>
-            </div>
-            <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
-        </form>
-    </div>
-
-    <!-- Matching Result -->
-    <div class="mt-4" style="display: none;" id="matchingResult">
-        <h3>Matching Result</h3>
-        <div id="matchResult"></div>
-    </div>
-</div>
-
-<script>
-    let currentStep = 0;
-    const totalSteps = 2; // Number of steps
-
-    function nextStep(step){
-        if (step === 1){
-            const interest = document.getElementById('interest').value;
-        } else if (step === 2){
-            const need = document.getElementById('need').value;
-        }//elseif
-
-        // Update progress bar
-        currentStep++;
-        const progressBar = document.getElementById('progressBar');
-        const progressLabel = document.querySelector('.progress-label');
-        const percentComplete = (currentStep / totalSteps) * 100;
-        progressBar.style.width = percentComplete + '%';
-        progressBar.setAttribute('aria-valuenow', percentComplete);
-        progressLabel.textContent = `${Math.round(percentComplete)}% Complete`;
-
-        //revealing steps
-        document.getElementById(`step${step}`).style.display = 'none';
-        if (currentStep < totalSteps) {
-            document.getElementById(`step${currentStep + 1}`).style.display = 'block';
-        } else {
-            // If all steps are completed, show matching result
-            showMatchingResult();
-        }//else
+<style>
+    /* Initially hide the text */
+    .hidden-text {
+    display: none;
     }
+</style>
 
-    function showMatchingResult{
-        const interest = document.getElementById('interest').value;
-        const neede = document.getElementById('need').value;
-        let result = "No match found.";
+<div class="d-flex justify-content-center">
+    <div class="card shadow text-bg-light w-50 text-center p-2 border-gradient border-gradient-purple">
+        <img src="https://i.imgur.com/QNGxd7r.png" class="img-fluid rounded">
+        <h2 class="p-1"> Algorithm <span class="gradient-text">Match-Making</span></h2>
+        <p>Unsure of what algorithm to use? Let us match you!</p>
+        <hr class="solid">
+        <p class="ps">Select what traits you'd like in a algorithim</p>
+        
+        <!-- Control buttons -->
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')"> All</button>
+            <button class="btn" onclick="filterSelection('fast')"> <i class="bi bi-lightning-charge"></i> Fast</button>
+            <button class="btn" onclick="filterSelection('safe')"> <i class="bi bi-shield-lock"></i> Safe</button>
+            <button class="btn" onclick="filterSelection('simple')"> <i class="bi bi-check"></i> Simple</button>
+            <button class="btn" onclick="filterSelection('messages')"> <i class="bi bi-envelope"></i> Messages</button>
+            <button class="btn" onclick="filterSelection('docs')"> <i class="bi bi-archive"></i> Documents</button>
+        </div>
 
-        if (interest === "option1" && need === "option4") {
-            result = "You are matched with User A.";
-        } else if (interest === "option2" && need === "option5") {
-            result = "You are matched with User B.";
-        } else if (interest === "option3" && need === "option6") {
-            result = "You are matched with User C.";
-        }
-        document.getElementById('matchResult').textContent = result;
-        document.getElementById('matchingResult').style.display = 'block';
-    }
-</script>
+        <!-- The filterable elements. Note that some have multiple class names (this can be used if they belong to multiple categories) -->
+        <div class="container">
+            <div class="filterDiv fast safe docs"><a class="a-clear" href="/Cipher/Details/3">AES</a></div>
+            <div class="filterDiv safe messages docs"><a class="a-clear"href="/Cipher/Details/5">RSA</a></div>
+            <div class="filterDiv fast simple messages"><a class="a-clear" href="/Cipher/Details/2">A1Z26</a></div>
+            <div class="filterDiv simple messages"><a class="a-clear" href="/Cipher/Details/1">Casear</a></div>
+            <div class="filterDiv safe fast docs messages"><a class="a-clear" href="/Cipher/Details/4">Blowfish</a></div>
+        </div>
+    </div>
+ </div>
+
