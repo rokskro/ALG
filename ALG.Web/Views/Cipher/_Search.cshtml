@@ -1,0 +1,13 @@
+@model CipherViewModel
+
+<form asp-asp-controller="Cipher" asp-action="Index" class="form-inline">
+    <!-- search bar-->
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">
+        <i class="bi bi-binoculars"></i>
+        </span>
+        <input asp-for="Query" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search">
+
+        <button type="submit" class="btn btn-purple">Search!</button>
+    </div>
+</form>
