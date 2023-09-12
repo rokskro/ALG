@@ -1,113 +1,34 @@
 @model CipherViewModel
 
 @{
-    ViewBag.Title = "Cipher Cipher";
+    ViewBag.Title = "Testing Ground";
 }
-
-<a class="btn btn-dark btn-sm" asp-action="_Sym" role="button">Symmetrical</a>
-<a class="btn btn-dark btn-sm" asp-action="_Asym" role="button">Asymmetrical</a>
-<a class="btn btn-dark btn-sm" asp-action="_Sym2" role="button">Blowfish</a>
-
-<h5><i class="bi bi-braces"></i> Testing Ground</h5>
-<div class="container">
-    <p>Algorithim type: </p> 
-</div>
 
 <div class="d-flex justify-content-center">
-<div class="card" style="width: 40rem;">
-    <div class="card-body">
-<h5 class ="card-title"> A1Z26 Cipher</h5>
-@using (Html.BeginForm("A1ZCipher", "Cipher", FormMethod.Post))
-{
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="title"><i class="bi bi-repeat"> Replace</i></span>
-                    <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"> Encrypt</i></button>
-                </div>
+    <div class ="card shadow p-2" style="width: 450px">
+
+        <h2 class="text-center">Algorithm <span class="gradient-text">Testing Ground</span></h2>
+        <p class="text-center">Currently available algorhtims can be tested out here - try them out!</p>
+
+        <div class="d-flex justify-content-center p-1">
+            <div class="btn-group-vertical m-1 p-1">
+                <a class="btn btn-purple btn-sm" asp-action="_Sym" role="button" style="width: 110px">AES</a>
+                <a class="btn btn-purple btn-sm" asp-action="_Asym" role="button" style="width: 110px">RSA</a>
+                <a class="btn btn-dark btn-sm position-relative" asp-action="_Sym2" role="button" style="width: 110px">Blowfish
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" style="color: #fff">New!</span>
+                </a>
+                <a class="btn btn-darkpurple btn-sm" asp-action="_Cipher2" role="button" style="width: 110px">Caesar</a>
+                <a class="btn btn-darkpurple btn-sm" asp-action="_Cipher1" role="button" style="width: 110px">A1Z26</a>
+                
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header bg-dark" style="color: #ffffff">
-                        Text Input
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            @Html.TextBoxFor(model => model.InputText, new { @class = "form-control" })
-                        </div>   
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-header bg-dark" style="color: #ffffff">
-                        Text Output
-                    </div>
-                    <div class="card-body">
-                    @if (!string.IsNullOrEmpty(Model.EncryptedText) && !string.IsNullOrEmpty(Model.DecryptedText))
-                    {
-                        <h6>Encrypted Text: @Model.EncryptedText</h6>
-                        <h6>Decrypted Text: @Model.DecryptedText</h6>
-                    }
-                    </div>
-                </div>
-            </div>
+        <hr class="solid-dark">
+
+        <div class=" d-flex justify-content-center">
+            <p><a href="/Cipher/Index" class="link-dark link-offset-2" style="text-decoration: none"> <i class="bi bi-arrow-90deg-up"></i> Back to selection library</a></p>
         </div>
-    </div>   
-}
-</div>
+    </div>
 </div>
 
 
-<div class="card" style="width: 40rem;">
-    <div class="card-body">
-<h5 class ="card-title"> Caesar Cipher</h5>
-@using (Html.BeginForm("EncryptDecrypt", "Cipher", FormMethod.Post))
-{
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="key"><i class="bi bi-key"> Key</i></span>
-                     @Html.TextBoxFor(model => model.Shift, new { @class = "form-control" })
-                    <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Encrypt</button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header bg-dark" style="color: #ffffff">
-                        Text Input
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            @Html.TextBoxFor(model => model.InputText, new { @class = "form-control" })
-                        </div>   
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-header bg-dark" style="color: #ffffff">
-                        Text Output
-                    </div>
-                    <div class="card-body">
-                        @if (!string.IsNullOrEmpty(Model.EncryptedText) && !string.IsNullOrEmpty(Model.DecryptedText))
-                        {
-                            <h6>Encrypted Text: @Model.EncryptedText</h6>
-                            <h6>Decrypted Text: @Model.DecryptedText</h6>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>   
-}
-</div>
-</div>
 
-</div>

@@ -218,6 +218,10 @@ public class CipherController : BaseController
         return View(new CipherViewModel());
     }//view 
 
+    public ActionResult _Cipher1(){
+        return View(new CipherViewModel());
+    }
+    
     [HttpPost]
     public ActionResult Encrypt(CipherViewModel model)
     {
