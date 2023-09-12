@@ -3,13 +3,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
-<h5><i class="bi bi-braces"></i> Testing Ground</h5>
-<p>Algorithim type: Symmetrical </p>
-
 <div class="d-flex justify-content-center">
-<div class="card text-center" style="width: 45rem;">
-    <h5 class="card-title"> AES Algorithim</h5>
+<div class="card shadow text-center p-2" style="width: 45rem;">
+    <h3 class="card-title"><span class="gradient-text"> AES Algorithim</span></h3>
+    <p>
+        <a href="_Cipher" class="btn btn-purple" style="width: 110px">Selection</a>
+        <a href="/Cipher/Details/3" class="btn btn-darkpurple" style="width: 110px">Documents</a>
+    </p>
     <div class="card-body text-center">  
+        <p><i class="bi bi-cone-striped"></i> When decrypting, please make sure to return to 'decrypt' when you finish to see your decrypted message</p>
             <label for="formSelector"> <span style ="color: #802ce1"><i class="bi bi-1-square"></i> Step 1 </span> Select Method</label>
             <div class="d-flex justify-content-center p-1">
             <select id="formSelector" class="form-control" style ="width: 5rem;">
@@ -32,9 +34,11 @@
                     <div class="col">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="key"><i class="bi bi-key"> 16 Digit Key</i></span>
-                            @Html.TextBoxFor(model => model.EncryptionKey, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.EncryptionKey, new { @class = "form-control", @id = "EncryptionKey" })
                             <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Encrypt</button>
+                            <div class="invalid-feedback">Please enter a valid 16-digit key.</div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -82,8 +86,9 @@
                     <div class="col">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="key"><i class="bi bi-key"> 16 Digit Key</i></span>
-                            @Html.TextBoxFor(model => model.EncryptionKey, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.EncryptionKey, new { @class = "form-control", @id = "EncryptionKey"  })
                             <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Decrypt</button>
+                            <div class="invalid-feedback">Please enter a valid 16-digit key.</div>
                         </div>
                     </div>
                 </div>
@@ -137,4 +142,21 @@
             $('#' + selectedForm).show();
         });
     });
+
+    $(document).ready(function () {
+        $("form").submit(function (e) {
+            e.preventDefault();
+            var encryptionKey = $("#EncryptionKey").val();
+
+            // Your validation logic here (e.g., check for 16-digit key)
+            if (encryptionKey.length !== 16 || !$.isNumeric(encryptionKey)) {
+                $("#EncryptionKey").addClass("is-invalid");
+            } else {
+                $("#EncryptionKey").removeClass("is-invalid");
+                // Submit the form if validation passes
+                $(this).unbind("submit").submit();
+            }
+        });
+    });
+
 </script>

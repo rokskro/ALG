@@ -63,7 +63,7 @@ public class CipherController : BaseController
         return View(new CipherViewModel());
     }//view for blowfish
 
-    [HttpPost]
+    [HttpPost] [ValidateAntiForgeryToken]
     public ActionResult BlowFishEncrypt(CipherViewModel model)
     {
         if(ModelState.IsValid){
@@ -86,6 +86,7 @@ public class CipherController : BaseController
         return View("_Sym2", model);
     }
 
+    [HttpPost][ValidateAntiForgeryToken]
     public ActionResult BlowFishDecrypt(CipherViewModel model)
     {
         if (ModelState.IsValid){
@@ -110,7 +111,7 @@ public class CipherController : BaseController
     
     //----------- AES View --------------------
 
-    [HttpPost]
+    [HttpPost] [ValidateAntiForgeryToken]
     public ActionResult AESEncrypt(CipherViewModel model)
     {
         if (ModelState.IsValid){
@@ -132,7 +133,7 @@ public class CipherController : BaseController
     return View("_Sym", model);
     }
 
-    [HttpPost]
+    [HttpPost] [ValidateAntiForgeryToken]
     public ActionResult AESDecrypt(CipherViewModel model)
     {
         if(ModelState.IsValid){
@@ -160,7 +161,7 @@ public class CipherController : BaseController
         return View(new CipherViewModel());
     }//view 
 
-    [HttpPost]
+    [HttpPost] [ValidateAntiForgeryToken]
     public ActionResult A1ZCipherEncrypt(CipherViewModel model)
     {
         if (!ModelState.IsValid){
@@ -171,7 +172,7 @@ public class CipherController : BaseController
         return View("_Cipher", model);
     }//encrypt + decrypt
 
-    [HttpPost]
+    [HttpPost] [ValidateAntiForgeryToken]
     public ActionResult A1ZCipherDecrypt(CipherViewModel model)
     {
         if (!ModelState.IsValid){
@@ -222,24 +223,25 @@ public class CipherController : BaseController
         return View(new CipherViewModel());
     }
     
-    [HttpPost]
-    public ActionResult Encrypt(CipherViewModel model)
+    [HttpPost] [ValidateAntiForgeryToken]
+    public ActionResult EncryptC(CipherViewModel model)
     {
         if (ModelState.IsValid){
             model.EncryptedText = EncryptTextCaesar(model.InputText, model.Shift);
         }//if
-        return View("_Cipher", model);
+        return View("_Cipher2", model);
     }//encrypt post
 
 
-    [HttpPost]
+    [HttpPost][ValidateAntiForgeryToken]
     public ActionResult DecryptC(CipherViewModel model)
     {
         if (ModelState.IsValid){
             model.DecryptedText = DecryptTextCaesar(model.EncryptedText, model.Shift);
         }//if
-        return View("_Cipher", model);
+        return View("_Cipher2", model);
     }//decrypt post
+
 
     private string EncryptTextCaesar(string text, int shiftKey)
     {
@@ -266,7 +268,7 @@ public class CipherController : BaseController
         return View(new CipherViewModel());
     }//view only for asymmetrical algs
 
-    [HttpPost]
+    [HttpPost] [ValidateAntiForgeryToken]
     public ActionResult RSA(CipherViewModel model)
     {
         using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider()){

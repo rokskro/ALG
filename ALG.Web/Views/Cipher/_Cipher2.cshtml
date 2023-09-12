@@ -1,51 +1,132 @@
 @model CipherViewModel
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<div class="card" style="width: 40rem;">
-    <div class="card-body">
-<h5 class ="card-title"> Caesar Cipher</h5>
-@using (Html.BeginForm("EncryptDecrypt", "Cipher", FormMethod.Post))
-{
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="key"><i class="bi bi-key"> Key</i></span>
-                     @Html.TextBoxFor(model => model.Shift, new { @class = "form-control" })
-                    <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Encrypt</button>
+<div class="d-flex justify-content-center">
+    <div class="card shadow text-center p-2-" style="width: 45rem;">
+        <h3 class="card-title"><span class="gradient-text"> Caesar Cipher</span></h3>
+        <p>
+            <a href="_Cipher" class="btn btn-purple" style="width: 110px">Selection</a>
+            <a href="/Cipher/Details/1" class="btn btn-darkpurple" style="width: 110px">Documents</a>
+        </p>
+        <div class="card-body text-center">  
+            <p><i class="bi bi-cone-striped"></i> When decrypting, please make sure to return to 'decrypt' when you finish to see your decrypted message</p>
+            <label for="formSelector"> <span style ="color: #802ce1"><i class="bi bi-1-square"></i> Step 1 </span> Select Method</label>
+            <div class="d-flex justify-content-center p-1">
+                <select id="formSelector" class="form-control" style ="width: 5rem;">
+                    <option value="form1">Encrypt</option>
+                    <option value="form2">Decrypt</option>  
+                </select>
+            </div>
+            <div id="form1">
+                <div class="d-flex justify-content-center">
+                    <div class="card-body">
+                    @using (Html.BeginForm("EncryptC", "Cipher", FormMethod.Post))
+                    {
+                    <div class="container">
+                        <p><span style ="color: #802ce1"><i class="bi bi-2-square"></i> Step 2 </span> Try it out!</p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="key"><i class="bi bi-key"> Key</i></span>
+                                    @Html.TextBoxFor(model => model.Shift, new { @class = "form-control" })
+                                    <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Encrypt</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header bg-dark" style="color: #ffffff">
+                                        Text Input
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.InputText, new { @class = "form-control" })
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header bg-dark" style="color: #ffffff">
+                                        Text Output
+                                    </div>
+                                    <div class="card-body">
+                                        @if (!string.IsNullOrEmpty(Model.EncryptedText))
+                                        {
+                                            <h6>Encrypted Text: @Model.EncryptedText</h6>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header bg-dark" style="color: #ffffff">
-                        Text Input
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            @Html.TextBoxFor(model => model.InputText, new { @class = "form-control" })
+        <div id="form2" style="display: none;">
+            <div class="d-flex justify-content-center">
+                <div class="card-body">
+                    @using (Html.BeginForm("DecryptC", "Cipher", FormMethod.Post))
+                    {
+                    <div class="container">
+                        <p><span style ="color: #802ce1"><i class="bi bi-2-square"></i> Step 2 </span> Try it out!</p>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="key"><i class="bi bi-key"> Key</i></span>
+                                        @Html.TextBoxFor(model => model.Shift, new { @class = "form-control" })
+                                        <button type="submit" class="btn btn-dark btn-sm"><i class="bi bi-play"></i> Decrypt</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header bg-dark" style="color: #ffffff">
+                                            Text Input
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.InputText, new { @class = "form-control" })
+                                            </div>   
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header bg-dark" style="color: #ffffff">
+                                            Text Output
+                                        </div>
+                                        <div class="card-body">
+                                            @if (!string.IsNullOrEmpty(Model.DecryptedText))
+                                            {
+                                                <h6>Decrypted Text: @Model.DecryptedText</h6>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>   
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card-header bg-dark" style="color: #ffffff">
-                        Text Output
-                    </div>
-                    <div class="card-body">
-                        @if (!string.IsNullOrEmpty(Model.EncryptedText) && !string.IsNullOrEmpty(Model.DecryptedText))
-                        {
-                            <h6>Encrypted Text: @Model.EncryptedText</h6>
-                            <h6>Decrypted Text: @Model.DecryptedText</h6>
                         }
                     </div>
                 </div>
             </div>
         </div>
-    </div>   
-}
+    </div>
 </div>
-</div>
+<script>
+    $(document).ready(function () {
+        $('#formSelector').change(function () {
+            var selectedForm = $(this).val();
 
-</div>
+            // Hide all forms
+            $('#form1, #form2').hide();
+
+            // Show the selected form
+            $('#' + selectedForm).show();
+        });
+    });
+</script>
