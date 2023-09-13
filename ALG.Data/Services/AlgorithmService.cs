@@ -69,7 +69,10 @@ public class AlgorithmService : IAlgorithmService
             SecurityRating = a.SecurityRating,
             Speed = a.Speed,
             SpeedRating = a.SpeedRating,
-            TypeClass = a.TypeClass
+            TypeClass = a.TypeClass,
+            LongDescription = a.LongDescription,
+            WorkDescription = a.WorkDescription,
+            UseCases = a.UseCases
         };
         ctx.Algorithms.Add(Algorithm);
         ctx.SaveChanges();

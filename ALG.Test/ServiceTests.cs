@@ -34,7 +34,8 @@ public class AlgorithmServiceTests
         var a1 = service.AddAlgorithm(
             new Algorithm { Name = "Rot13", LongName="rot13", Description = "rotation 13", Security = "bad", 
             SecurityRating = 1, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
 
         var Algorithms = service.GetAlgorithms();
@@ -50,12 +51,14 @@ public class AlgorithmServiceTests
         var a1 = service.AddAlgorithm(
             new Algorithm { Name = "Rot13",LongName="rot13", Description = "rotation 13", Security = "bad", 
             SecurityRating = 1, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         var a2 = service.AddAlgorithm(
             new Algorithm { Name = "Blank",LongName="rot13", Description = "cipher", Security = "bad", 
             SecurityRating = 1, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
        
         //act
@@ -77,7 +80,8 @@ public class AlgorithmServiceTests
         var a = service.AddAlgorithm(
             new Algorithm { Name = "Rot13",LongName="rot13", Description = "rotation 13", Security = "bad", 
             SecurityRating = 1, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         var na = service.GetAlgorithm(a.Id);
         Assert.NotNull(na);
@@ -90,7 +94,8 @@ public class AlgorithmServiceTests
         var a = service.AddAlgorithm(
             new Algorithm { Name = "Rot13",LongName="rot13", Description = "rotation 13", Security = "bad", 
             SecurityRating = 1, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         var na = service.GetAlgorithmByName("Rot13");
         Assert.NotNull(na);
@@ -103,7 +108,8 @@ public class AlgorithmServiceTests
         var added = service.AddAlgorithm(
             new Algorithm { Name = "Rot13",LongName="rot13", Description = "rotation 13", Security = "bad", 
             SecurityRating = 1, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         var a = service.GetAlgorithm(added.Id);
         Assert.NotNull(a);
@@ -127,12 +133,14 @@ public class AlgorithmServiceTests
         var a1 = service.AddAlgorithm(
             new Algorithm { Name = "Rot13", LongName="rot13",Description = "rotation 13", Security = "bad", 
             SecurityRating = 1, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         var a2 = service.AddAlgorithm(
             new Algorithm { Name = "Rot13", LongName="rot13",Description = "roman cipher", Security = "bad", 
             SecurityRating = 1, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         Assert.NotNull(a1);
         Assert.Null(a2);
@@ -144,7 +152,8 @@ public class AlgorithmServiceTests
         var a = service.AddAlgorithm(
             new Algorithm { Name = "Rot13", LongName="rot13",Description = "rotation 13", Security = "bad", 
             SecurityRating = 7, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         Assert.Null(a);
     }//invalid security rating 
@@ -155,7 +164,8 @@ public class AlgorithmServiceTests
         var a = service.AddAlgorithm(
             new Algorithm { Name = "Rot13", LongName="rot13",Description = "rotation 13", Security = "bad", 
             SecurityRating = 2, Efficiency = "low", EfficiencyRating = 7, Speed = "average",
-            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         Assert.Null(a);
     }//inavlid efficiency rating
@@ -166,7 +176,8 @@ public class AlgorithmServiceTests
         var a = service.AddAlgorithm(
             new Algorithm { Name = "Rot13", LongName="rot13",Description = "rotation 13", Security = "bad", 
             SecurityRating = 2, Efficiency = "low", EfficiencyRating = 2, Speed = "average",
-            SpeedRating = 7, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png"
+            SpeedRating = 7, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
+            LongDescription="x", WorkDescription="x", UseCases="x"
         });
         Assert.Null(a);
     }//invalid speed rating

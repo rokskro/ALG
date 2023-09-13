@@ -50,10 +50,10 @@
                             <p>This algorithim is a <a href="/Cipher/Guide#asymmetrical" class="link-dark link-offset-2" style="text-decoration: none"> <span style="color: #ffc107;">asymmetrical</span> algorithim type</a></p>
                         }
                         
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.</p>
+                        <p>@Model.LongDescription</p>
                         <h5 id="theory">How it Works</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <p>@Model.WorkDescription</p>
+                        <p>Here is a simplified diagram explaining this concept</p>
                         @if (Model.DiagramUrl?.Length > 0){
                             <div class="text-center">
                                 <img src="@Model.DiagramUrl" class="img-fluid rounded " height="200px" alt="diagram">
@@ -61,11 +61,10 @@
                         } else {
                             <span class="text-info">n/a</span>
                         }
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
                         <h5 id="stats">Statistcs</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
                         <h5 id="usage">Use cases</h5>
-                        <p>...</p>
+                        <p>@Model.UseCases</p>
                         <p><a href="#about" class="link-dark link-offset-2" style="text-decoration: none"> <i class="bi bi-arrow-90deg-up"></i> Back to top</a></p>
                     </div>
                 </div>

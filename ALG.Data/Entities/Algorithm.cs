@@ -40,7 +40,11 @@ public class Algorithm
     [UrlResource]
     public string DiagramUrl {get;set;} 
 
-    public String TypeClass {get;set;}
+    public string TypeClass {get;set;}
+
+    public string LongDescription {get;set;} 
+    public string WorkDescription {get;set;}
+    public string UseCases {get;set;}
     
 }
 
