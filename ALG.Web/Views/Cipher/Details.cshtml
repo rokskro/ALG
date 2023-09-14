@@ -6,7 +6,7 @@
 
 <partial name="_Breadcrumbs" model=@(new [] {
     ("/", "Home"),
-    ("/Alg", "Algorithims"),
+    ("/Cipher", "Algorithims"),
     ("", $"{Model.Name}")
 })/>
 
@@ -33,8 +33,8 @@
                             <i class="bi bi-shield-lock"></i> Use Cases
                         </a>
                     </div>
-                    <div>
-                        <a class="btn btn-purple" asp-action="_Cipher2" role="button">Try it out</a>
+                    <div class="d-flex justify-content-center p-2">
+                        <a class="btn btn-purple" asp-action="_Cipher" role="button">Try it out</a>
                     </div>
                 </div>
                 <div class="col-8">
@@ -63,6 +63,9 @@
                         }
                         <h5 id="stats">Statistcs</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                        <p><i class="bi bi-lightning-charge"></i>Speed: @Model.SpeedRating</p>
+                        <p><i class="bi bi-shield-lock"></i>Security: @Model.SecurityRating</p>
+                        <p><i class="bi bi-hourglass-split"></i>Efficiency: @Model.EfficiencyRating</p>
                         <h5 id="usage">Use cases</h5>
                         <p>@Model.UseCases</p>
                         <p><a href="#about" class="link-dark link-offset-2" style="text-decoration: none"> <i class="bi bi-arrow-90deg-up"></i> Back to top</a></p>
