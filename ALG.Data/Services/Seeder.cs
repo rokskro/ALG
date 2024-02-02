@@ -68,6 +68,9 @@ namespace ALG.Data.Services
                 WorkDescription="RSA relies on the mathematical properties of large prime numbers; it involves the generation of a public key for encryption and a private key for decryption (factoring the product of two large prime numbers). This asymmetry between the public and private keys makes it extremely difficult for anyone to decipher the message without access to the private key, ensuring the confidentiality and integrity of the encrypted data.", 
                 UseCases="RSA is commonly used to establish secure communication channels over the internet, such as HTTPS for secure web browsing, email encryption, and virtual private networks (VPNs). Additonally, RSA is employed to create digital signatures, which verify the authenticity and integrity of digital documents, contracts, and messages. "
             });
+
+
+            
         }
 
 

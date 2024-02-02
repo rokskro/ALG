@@ -111,7 +111,9 @@ public class AlgorithmServiceTests
             SpeedRating = 3, DiagramUrl = "http://kerryb.github.io/enigma/images/components.png",
             LongDescription="x", WorkDescription="x", UseCases="x"
         });
+
         var a = service.GetAlgorithm(added.Id);
+        
         Assert.NotNull(a);
 
         Assert.Equal(a.Id, a.Id);
